@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import Text from '../../components/text';
+import Select from '../../components/select'
 
 export const FormComponent = ({ handleSubmit, onSubmit }) => {
   return (
@@ -12,9 +13,32 @@ export const FormComponent = ({ handleSubmit, onSubmit }) => {
       >
         <Field
           name="firstName"
-          label="First Named"
+          label="First Name"
           component={Text}
         />
+
+        <Field
+          name="lastName"
+          label="Last Name"
+          component={Text}
+        />
+        <Field
+          name="email"
+          label="Email"
+          component={Text}
+        />
+
+        <Field
+          name="meatChoice"
+          label="Meat Choice"
+          component={Select}
+          options={{
+            pork: 'Pork',
+            beef: 'Beef',
+            chicken: 'Chicken'
+          }}
+        />
+
         <button
           type="submit"
           className="link br2 bg-blue white dim pa3 f6 sans-serif b--blue ba"
