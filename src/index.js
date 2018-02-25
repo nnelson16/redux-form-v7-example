@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import { Provider } from 'react-redux';
+
+import FormContainer from './modules/form/form.container';
+import configureStore from './store';
+
+const store = configureStore();
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <FormContainer />
+  </Provider>,
   document.getElementById('root')
 );
