@@ -1,16 +1,26 @@
 import React from 'react';
 import { Field } from 'redux-form';
+import Text from '../../components/text';
 
-const FormComponent = ({ handleSubmit, onSubmit }) => {
+export const FormComponent = ({ handleSubmit, onSubmit }) => {
   return (
-    <div>
-      <h1>My very own form</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-          <Field
-            name="firstName"
-            component="input"
-          />
-          <button type="submit">Submit</button>
+    <div className="flex flex-column justify-center items-center">
+      <h1>My Very own Form</h1>
+      <form
+        className="w-80"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Field
+          name="firstName"
+          label="First Named"
+          component={Text}
+        />
+        <button
+          type="submit"
+          className="link br2 bg-blue white dim pa3 f6 sans-serif b--blue ba"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

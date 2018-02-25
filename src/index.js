@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import "tachyons";
 
 import FormContainer from './modules/form/form.container';
 import configureStore from './store';
