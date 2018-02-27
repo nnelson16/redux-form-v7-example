@@ -1,9 +1,9 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
-
+import { connect } from 'react-redux';
+import { reduxForm, getFormValues } from 'redux-form';
 import FormComponent from './form.component';
 
-export const FormContainer = ({ handleSubmit }) => {
+export const FormContainer = ({ handleSubmit , formValues, change }) => {
   const submitForm = (formValues) => {
     console.log('submitting Form: ', formValues);
   }
@@ -11,12 +11,19 @@ export const FormContainer = ({ handleSubmit }) => {
   return (
     <FormComponent onSubmit={submitForm}
       handleSubmit={handleSubmit}
+      formValues={formValues}
+      change={change}
     />
   );
 }
 
+const mapStateToProps = state => ({
+  formValues: getFormValues('my-very-own-form')(state),
+});
 const formConfiguration = {
-  form: 'my-very-own-form'
+  form: 'my-very-own-form',
 }
 
-export default reduxForm(formConfiguration)(FormContainer);
+export default connect(mapStateToProps)(
+  reduxForm(formConfiguration)(FormContainer)
+);

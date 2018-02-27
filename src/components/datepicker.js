@@ -20,7 +20,7 @@ export class Datepicker extends React.Component {
 
   handleDateChange = (date) => {
     this.setState({ date });
-    this.props.input.onChange(moment(date).format('YYYY-MM-DD'))
+    this.props.change(this.props.input.name, date)
   }
 
   render() {

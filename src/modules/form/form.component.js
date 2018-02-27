@@ -1,9 +1,13 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import Text from '../../components/text';
-import Select from '../../components/select'
+import Select from '../../components/select';
+import Radio from '../../components/radio';
+import Checkbox from '../../components/checkbox';
+import Datepicker from '../../components/datepicker';
+import { required } from './form.validators';
 
-export const FormComponent = ({ handleSubmit, onSubmit }) => {
+export const FormComponent = ({ handleSubmit, onSubmit, formValues, change }) => {
   return (
     <div className="flex flex-column justify-center items-center">
       <h1>My Very own Form</h1>
@@ -15,6 +19,7 @@ export const FormComponent = ({ handleSubmit, onSubmit }) => {
           name="firstName"
           label="First Name"
           component={Text}
+          validate={required}
         />
 
         <Field
@@ -38,6 +43,33 @@ export const FormComponent = ({ handleSubmit, onSubmit }) => {
             chicken: 'Chicken'
           }}
         />
+
+        <Field
+          name="spiceLevel"
+          label="Spice Level"
+          component={Radio}
+          options={{
+            mild: 'Mild',
+            medium: 'Medium',
+            hot: 'hot'
+          }}
+        />
+
+        <Field
+          name="orderDate"
+          label="Order Date"
+          component={Datepicker}
+          change={change}
+        />
+
+        {formValues && formValues.spiceLevel === 'hot' ? (
+          <Field
+            name="wantsFries"
+            label="Would you like fries with that?"
+            component={Checkbox}
+          />
+        ) : ''}
+
 
         <button
           type="submit"
